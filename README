@@ -94,7 +94,12 @@ TEMPLATES
                     <match tagname = "a" _href = "{!!}" />
             </section>
 
-    Match elements are used to match (duh!) elements of the target.
+    Generally section elements will only be used to mark off content. This,
+    of course does not require children, and the tagname must be *CONTENT*.
+
+            <section tagname = "CONTENT" />
+
+    Match elements are used to match elements of the target.
 
     Attributes are defined with a leading underscore.
 
@@ -178,9 +183,9 @@ TEMPLATES
     the perl5 regular expression specified between {! and !} to match the
     target element". Luckily you don't have to actually say all that!
 
-    Please see noname.html, noname.xml and noname.pl in this distrobution
-    for a small example of this module, what it does, and a bit on how to
-    use it.
+    Please see "noname.html", "noname.xml" and "noname.pl" in this
+    distribution for a small example of this module, what it does, and a bit
+    on how to use it.
 
 CAVEATS
     This module is *HIGHLY* experimental. It may save your life, job or

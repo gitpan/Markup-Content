@@ -1,5 +1,5 @@
 package Markup::Content;
-$VERSION = '1.0.0';
+$VERSION = '1.0.1';
 
 ####################################################
 # This module is protected under the terms of the
@@ -179,6 +179,21 @@ sub mark_content {
 	} while (($template_node = $move_node->($template_node)) && ($target_node = $move_node->($target_node)));
 }
 
+# TODO: write this method -> HTML => XML template
+sub mk_template {
+	my ($self, $out) = @_;
+	my $data;
+	$out = \$data if (!$out);
+
+	Carp::croak ('No target') if (!($self->{'target'}->{'tree'}));
+
+	$self->{'_tree'}->{'tree'}->foreach_node(sub {
+		my $node = shift();
+
+
+	});
+}
+
 1;
 
 __END__
@@ -297,7 +312,12 @@ is specified in the tag by the C<tagname> known attribute.
 		<match tagname = "a" _href = "{!!}" />
 	</section>
 
-Match elements are used to match (duh!) elements of the target.
+Generally section elements will only be used to mark off content. This, of course
+does not require children, and the tagname B<must> be I<CONTENT>.
+
+	<section tagname = "CONTENT" />
+
+Match elements are used to match elements of the target.
 
 Attributes are defined with a leading underscore.
 
@@ -398,8 +418,8 @@ an exact match. By surrounding text or attribute values with
 specified between {! and !} to match the target element".
 Luckily you don't have to actually say all that!
 
-Please see L<noname.html>, L<noname.xml> and L<noname.pl> in this
-distrobution for a small example of this module, what it does, and
+Please see C<noname.html>, C<noname.xml> and C<noname.pl> in this
+distribution for a small example of this module, what it does, and
 a bit on how to use it.
 
 =head1 CAVEATS
